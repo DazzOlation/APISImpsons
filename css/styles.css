@@ -1,0 +1,30 @@
+body{
+    background-color: lightgray;
+}
+
+#donut, #navbarDonut {
+    width: 20px;
+    height: 20px;
+}
+
+.navbar{
+    background-color: white;
+    border: solid yellow;
+}
+
+.card-img-top{
+    width: 250px;
+    height: 250px;
+}
+
+.card{
+    margin-bottom: 10px;
+}
+
+h1{
+    text-align: center;
+}
+
+.card:hover{
+    border: solid 5px yellow;
+}
