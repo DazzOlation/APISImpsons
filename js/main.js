@@ -1,7 +1,7 @@
 async function GetSimpsonsData() {
     const response = await fetch("https://apisimpsons.fly.dev/api/personajes?limit=12");
     const data = await response.json();
-    return data.docs;
+    ShowSimpsonsData(data.docs);
 }
 
 function SearchCharacter() {
@@ -9,10 +9,14 @@ function SearchCharacter() {
     const btnBuscar = document.getElementById('btnBuscar');
     btnBuscar.addEventListener('click', async () => {
         const query = inputBuscar.value;
+        console.log(query);
         const url = `https://apisimpsons.fly.dev/api/personajes/find/${query}`;
+        console.log(url);
         const response = await fetch(url);
         const searchResult = await response.json();
+        console.log(searchResult)
         ShowSimpsonsData(searchResult.result);
+        console.log(searchResult.result)
     });
 }
 
@@ -24,7 +28,7 @@ function ShowSimpsonsData(characters) {
         card.className = "col-md-12 col-lg-4 col-sm-12";
         card.innerHTML = `
             <div class="card">
-                <img src="${elem.Imagen}" class="card-img-top" alt="${elem.Nombre}">
+                <img src="${elem.Imagen}" class="card-img top" alt="${elem.Nombre}">
                 <div class="card-body">
                     <h5 class="card-title">${elem.Nombre}</h5>
                     <p class="card-text">Historia: ${elem.Historia}</p>
@@ -39,8 +43,5 @@ function ShowSimpsonsData(characters) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const data = await GetSimpsonsData();
-    ShowSimpsonsData(data);
+    GetSimpsonsData(); 
 });
-
-
