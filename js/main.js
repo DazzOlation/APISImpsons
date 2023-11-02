@@ -1,24 +1,24 @@
+const inputBuscar = document.getElementById('inputBuscar');
+const btnBuscar = document.getElementById('btnBuscar');
+
 async function GetSimpsonsData() {
     const response = await fetch("https://apisimpsons.fly.dev/api/personajes?limit=12");
     const data = await response.json();
     ShowSimpsonsData(data.docs);
 }
 
-function SearchCharacter() {
-    const inputBuscar = document.getElementById('inputBuscar');
-    const btnBuscar = document.getElementById('btnBuscar');
-    btnBuscar.addEventListener('click', async () => {
+    btnBuscar.addEventListener('click', async function SearchCharacter() {
         const query = inputBuscar.value;
-        console.log(query);
         const url = `https://apisimpsons.fly.dev/api/personajes/find/${query}`;
-        console.log(url);
-        const response = await fetch(url);
-        const searchResult = await response.json();
+        const res = await fetch(url);
+        console.log(res)
+        const searchResult = await res.json();
         console.log(searchResult)
         ShowSimpsonsData(searchResult.result);
         console.log(searchResult.result)
+    
     });
-}
+
 
 function ShowSimpsonsData(characters) {
     const characterCards = document.getElementById("characterCards");
@@ -45,3 +45,4 @@ function ShowSimpsonsData(characters) {
 document.addEventListener('DOMContentLoaded', async () => {
     GetSimpsonsData(); 
 });
+
